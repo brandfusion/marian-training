@@ -1,0 +1,78 @@
+﻿@inherits Dynamicweb.Rendering.ViewModelTemplate<Dynamicweb.Frontend.GridRowViewModel>
+@using Dynamicweb.Frontend
+@using Dynamicweb.Content
+@using Dynamicweb.Content.Items
+
+@* Include the components *@
+
+
+@helper RenderIntroOutro(ItemViewModel intro) { 
+
+    if(intro != null) { 
+
+    string innerPadding = intro.GetList("Padding") != null ? " padding-size-" + intro.GetList("Padding").SelectedValue.ToLower() : "";
+    innerPadding += intro.GetList("PaddingPosition") != null ? " padding-position-" + intro.GetList("PaddingPosition").SelectedValue.ToLower() : "";
+    int titleHeadingSize = intro.GetList("TitleHeadingSize") != null && intro.GetList("TitleHeadingSize").SelectedValue != "" ? Convert.ToInt32(intro.GetList("TitleHeadingSize").SelectedValue) : 0 ;
+    int subtitleHeadingSize = intro.GetList("SubtitleHeadingSize") != null && intro.GetList("SubtitleHeadingSize").SelectedValue != ""? Convert.ToInt32(intro.GetList("SubtitleHeadingSize").SelectedValue) : 0 ;
+
+    string title = intro.GetString("Title");
+    string subtitle = intro.GetString("Subtitle");
+    string text = intro.GetString("Text");
+
+    string horizontalAlignment = intro.GetList("HorizontalAlignment").SelectedValue;
+    string verticalAlignment = intro.GetList("VerticalAlignment").SelectedValue;
+
+   	if( (title + subtitle + text) != "") {
+    <div class="u-full-width u-align-center  u-align-self-center dw-mod">                
+            <div class="u-full-height">
+                    <div class="content-row__item__body  @innerPadding dw-mod">
+                        <div class="u-margin-bottom--lg">
+                        
+                           <div class="u-full-width u-padding-top dw-mod">
+                                @if (!string.IsNullOrEmpty(intro.GetString("Title")) || !string.IsNullOrEmpty(intro.GetString("Text"))) {
+                                    <div class="u-margin-bottom--lg">
+                                        @if (!intro.GetBoolean("HideTitle")) { 
+                                            @Render(new Heading { Title = intro.GetString("Title"), Level = titleHeadingSize, CssClass = "u-no-margin" })
+                                        }
+                                        @if (!string.IsNullOrEmpty(intro.GetString("Subtitle"))) { 
+                                            @Render(new Heading { Title = intro.GetString("Subtitle"), Level = subtitleHeadingSize, CssClass = "u-margin-top" })
+                                        }
+                                        @Render(new Text { Content = intro.GetString("Text") })
+                                    </div>
+                                }
+                               @if (!string.IsNullOrEmpty(intro.GetItem("ButtonOne").GetString("Title"))) {
+                                <div class="buttons-collection u-block dw-mod">
+                                    @ParagraphButton(intro.GetItem("ButtonOne")) 
+                                </div>
+                                } 
+
+                            </div>
+
+                          
+                        </div>
+                    </div>
+            </div>
+        </div>
+		}
+    }
+}
+
+@helper ParagraphButton(ItemViewModel item) { 
+    if (item != null) {
+        if (!string.IsNullOrEmpty(item.GetString("Title"))) {
+            Button button = new Button {
+                Title = item.GetString("Title"),
+                Href = item.GetString("Link"),
+                ButtonLayout = (ButtonLayout)System.Enum.Parse(typeof(ButtonLayout), char.ToUpper(item.GetList("Layout").SelectedValue[0]) + item.GetList("Layout").SelectedValue.Substring(1))
+            };
+
+            if (!string.IsNullOrEmpty(item.GetString("Icon"))) {
+                button.Icon = new Icon { 
+                    CssClass = item.GetString("Icon")
+                };
+            }
+
+            @Render(button)
+        }    
+    }
+}

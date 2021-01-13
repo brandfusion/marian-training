@@ -1,0 +1,54 @@
+@inherits Dynamicweb.Rendering.ViewModelTemplate<Dynamicweb.Frontend.PageViewModel>
+
+@using System
+@using System.Web
+@using System.Collections.Generic
+@using Dynamicweb.Rapido.Blocks.Extensibility
+@using Dynamicweb.Rapido.Blocks
+@{
+    //BlocksPage masterBlocksBlocksPage = BlocksPage.GetBlockPage("Master");
+
+    Block promotion = new Block
+    {
+        Id = "Promotion",
+        SortId = 40,
+        Template = RenderPromotionArea()
+    };
+    masterBlocksBlocksPage.Add(MasterBlockId.MasterHeader, promotion);
+}
+
+@helper RenderPromotionArea(){
+    string promotionText = Model.Area.Item.GetItem("Layout").GetItem("Header").GetString("PromotionText");
+    string promotionBackgroundColor = Model.Area.Item.GetItem("Layout").GetItem("Header").GetString("PromotionText");
+    var promotionActivationDate = Model.Area.Item.GetItem("Layout").GetItem("Header").GetDateTime("PromotionActivationDate");
+    var promotionDeactivationDate = Model.Area.Item.GetItem("Layout").GetItem("Header").GetDateTime("PromotionDeactivationDate");
+    bool isActive = promotionActivationDate <= DateTime.Now && promotionDeactivationDate > DateTime.Now ? true : false;
+    
+    string promotionCallToAction = Model.Area.Item.GetItem("Layout").GetItem("Header").GetString("PromotionCallToAction");
+    string promotionCallToActionLink = Model.Area.Item.GetItem("Layout").GetItem("Header").GetString("PromotionCallToActionLink");
+    bool renderButton = !string.IsNullOrEmpty(promotionCallToActionLink) && !string.IsNullOrEmpty(promotionCallToAction) ? true : false;
+    
+    
+    if(!string.IsNullOrEmpty(promotionText) && isActive){
+    <div class="promotion-- dw-mod">
+        <div class="center-container-- grid top-container__center-container-- dw-mod">
+            <div class="grid u-ta-center dw-mod grid--align-center align-center grid--justify-center u-padding--m" id="Block__Promotion">
+                @if (renderButton)
+                {
+                    if (Model.CurrentUser.ID <= 0)
+                    {
+                <div class="col-sm-auto promotion-container__button promotion-container__button--spacing-default  dw-mod">
+                    @*<a href="@promotionCallToActionLink" class="btn-promotion">@promotionCallToAction</a>*@
+                    <label for="SignInModalTrigger" class="btn-promotion sign-in-modal-trigger-button dw-mod" onclick="setTimeout(function () { document.getElementById('LoginUsername').focus() }, 10)" style="
+">@promotionCallToAction</label>
+                    <div class="col-sm-auto u-margin--xs text-promotion">@promotionText</div>
+                </div>
+                    }
+                }
+                
+
+            </div>
+        </div>
+    </div>
+    }
+}

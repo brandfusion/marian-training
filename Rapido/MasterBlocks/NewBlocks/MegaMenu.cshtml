@@ -1,0 +1,23 @@
+@using Dynamicweb.Content
+
+
+@{
+    //BlocksPage masterBlocksBlocksPage = BlocksPage.GetBlockPage("Master");
+
+    Block megaMenu = new Block
+    {
+        Id = "MegaMenu",
+        SortId = 100,
+        Template = RenderMegaMenu()
+    };
+    masterBlocksBlocksPage.Add(MasterBlockId.MasterFooter, megaMenu);
+}
+
+@helper RenderMegaMenu(){
+int megaMenuPage = GetPageIdByNavigationTag("MenuConfiguration");
+    if(megaMenuPage > 0){
+        <div class="hidden">
+            @RenderPageContent(@megaMenuPage)
+        </div>
+    }
+}

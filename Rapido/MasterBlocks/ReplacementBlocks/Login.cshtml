@@ -1,0 +1,114 @@
+﻿@inherits Dynamicweb.Rendering.RazorTemplateBase<Dynamicweb.Rendering.RazorTemplateModel<Dynamicweb.Rendering.Template>>
+
+@using System
+@using System.Web
+@using System.Collections.Generic
+@using Dynamicweb.Rapido.Blocks
+@using Dynamicweb.Rapido.Blocks.Extensibility
+@using Dynamicweb.Security.UserManagement
+@using Dynamicweb.Security.UserManagement.ExternalAuthentication
+@{ 
+    Block loginModalCustom = new Block()
+    {
+        Id = "LoginModal",
+        SortId = 10,
+        Template = LoginModalCustom()
+    };
+
+    loginBlocksPage.ReplaceBlock(loginModalCustom);
+}
+
+@helper LoginModalCustom() {
+    int pageId = Model.TopPage.ID;
+    string userSignedInError = !Model.LogOnFailed ? "" : "checked";
+    string userSignedInErrorText = "";
+    int signInProfilePageId = GetPageIdByNavigationTag("SignInPage");
+    string forgotPasswordPageLink = "/Default.aspx?ID=" + signInProfilePageId + "&LoginAction=Recovery";
+    int createAccountPageId = GetPageIdByNavigationTag("CreateAccount");
+    bool isCartPage = GetPageIdByNavigationTag("CartPage") == pageId ? true : false;
+    string redirectToDashboard = Dynamicweb.Frontend.SearchEngineFriendlyURLs.GetFriendlyUrl("Default.aspx?ID=" + GetPageIdByNavigationTag("CustomerDashboard"));
+    string redirectDecision = !string.IsNullOrEmpty(HttpContext.Current.Request.QueryString.Get("ProductID")) || !string.IsNullOrEmpty(HttpContext.Current.Request.QueryString.Get("GroupID")) || isCartPage ? "" : redirectToDashboard;
+
+    if (Model.LogOnFailed) {
+        switch (Model.LogOnFailedReason)
+        {
+            case LogOnFailedReason.PasswordLengthInvalid:
+                userSignedInErrorText = Translate("Password length is invalid");
+                break;
+            case LogOnFailedReason.IncorrectLogin:
+                userSignedInErrorText = Translate("Invalid email or password");
+                break;
+            case LogOnFailedReason.ExceededFailedLogOnLimit:
+                userSignedInErrorText = Translate("You have exceeded the limit of allowed login attempts. The user account is temporarily locked");
+                break;
+            case LogOnFailedReason.LoginLocked:
+                userSignedInErrorText = Translate("The user account is temporarily locked");
+                break;
+            case LogOnFailedReason.PasswordExpired:
+                userSignedInErrorText = Translate("The password has expired and needs to be renewed");
+                break;
+            default:
+                userSignedInErrorText = Translate("An unknown error occured");
+                break;
+        }
+    }
+
+    <!-- Trigger for the login modal -->
+    <input type="checkbox" id="SignInModalTrigger" class="modal-trigger" @userSignedInError />
+
+    <!-- Login modal -->
+    <div class="modal-container">
+        <label for="SignInModalTrigger" id="SignInModalOverlay" class="modal-overlay"></label>
+        <div class="modal modal--md" id="SignInModal">
+            <div class="modal__header no-border">
+                <button type="button" class="close"><i class="fas fa-times"></i></button>
+                <h2 class="u-ta-center">@Translate("Sign in")</h2>
+            </div>
+            <div class="modal__body">
+                <form method="post" id="LoginForm" class="u-no-margin">
+                    <input type="hidden" name="ID" value="@pageId" />
+                    <input type="hidden" name="DWExtranetUsernameRemember" value="True" />
+                    <input type="hidden" name="DWExtranetPasswordRemember" value="True" />
+                    @if(redirectDecision!=""){
+                    <input type="hidden" name="redirect" value="@redirectDecision">
+                    }
+                    @* <label for="username">@Translate("Email")</label> *@
+                    <input type="text" class="u-full-width" id="LoginUsername" name="username" placeholder="@Translate("Email")" />
+
+                    @* <label for="password">@Translate("Password")</label> *@
+                    <input type="password" class="u-full-width" id="LoginPassword" name="password" placeholder="@Translate("Password")" />
+                    <div class="field-error dw-mod">@userSignedInErrorText</div>
+
+                    <div class="form__field-group dw-mod">
+                        <input type="checkbox" id="LoginRememberMe" name="Autologin" checked="checked" value="True" class="form__control">
+                        <label for="LoginRememberMe">
+                            @Translate("Remember me", "Remember me")
+                        </label>
+                    </div>
+
+                    <a class="btn btn--link-clean dw-mod" href="@forgotPasswordPageLink">@Translate("Forgot your password?")</a>
+                    
+                    <button type="submit" class="btn btn--primary btn--full dw-mod u-margin-top--lg" name="LoginAction" value="Login" onclick="Buttons.LockButton(event)">@Translate("Sign in")</button>
+                    @{
+                        ProviderCollection providers = Provider.GetActiveProviders();
+                    }
+
+                    @foreach(Provider LoginProvider in providers)
+                    {
+                        var ProviderName = LoginProvider.Name.ToLower();
+                        <a href="/Admin/Public/Social/ExternalLogin.aspx?action=login&providerID=@LoginProvider.ID" title="@LoginProvider.Name" class="btn btn--clean btn--condensed u-color-@ProviderName dw-mod"><i class="fab fa-@ProviderName fa-1_5x"></i></a>
+                    }
+
+
+                    <div class="dw-mod u-margin-top--lg">
+                        <div class="u-ta-center u-margin-bottom--lg">
+                            <h5 class="u-no-margin">@Translate("No Idera account?")</h5>
+                            <p class="u-no-margin" style="font-size: 13px;">@Translate("Follow the steps and become a member today")</p>
+                        </div>
+                        <a class="btn btn--primary btn--full dw-mod" href="/default.aspx?ID=@createAccountPageId">@Translate("Create account")</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+}

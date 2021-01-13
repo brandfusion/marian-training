@@ -1,0 +1,19 @@
+﻿@inherits Dynamicweb.Rendering.ViewModelTemplate<Dynamicweb.Frontend.ParagraphViewModel>
+@using Dynamicweb.Frontend
+@using Dynamicweb.Rapido.Blocks.Components
+@using Dynamicweb.Rapido.Blocks.Components.General
+
+@Include("ParagraphBase.cshtml")
+
+@{ 
+    string cssClasses = "u-no-margin u-full-width";
+    int titleHeadingSize = Model.Item.GetList("TitleHeadingSize") != null && Model.Item.GetList("TitleHeadingSize").SelectedValue != "" ? Convert.ToInt32(Model.Item.GetList("TitleHeadingSize").SelectedValue) : 0 ;
+    int subtitleHeadingSize = Model.Item.GetList("SubtitleHeadingSize") != null && Model.Item.GetList("SubtitleHeadingSize").SelectedValue != ""? Convert.ToInt32(Model.Item.GetList("SubtitleHeadingSize").SelectedValue) : 0 ;
+}
+
+@Render(new Heading { Title = Model.Item.GetString("Title"), Level = titleHeadingSize, CssClass = cssClasses })
+@if (!string.IsNullOrEmpty(Model.Item.GetString("Subtitle"))) { 
+    @Render(new Heading { Title = Model.Item.GetString("Subtitle"), Level = subtitleHeadingSize, CssClass = "u-margin-top" })
+}
+
+

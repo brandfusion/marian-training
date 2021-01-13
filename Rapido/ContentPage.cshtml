@@ -1,0 +1,7 @@
+﻿@inherits Dynamicweb.Rendering.ViewModelTemplate<Dynamicweb.Frontend.PageViewModel>
+
+@MasterPageFile("ContentMaster.cshtml")
+
+@* Render the grid *@
+@Model.Grid("Grid", "Grid", "default:true;sort:1", "Pages")
+@Model.Placeholder("dwcontent", "content", "default:true;sort:1")

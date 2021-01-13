@@ -1,0 +1,46 @@
+@inherits Dynamicweb.Rendering.ViewModelTemplate<Dynamicweb.Frontend.PageViewModel>
+
+@using System
+@using System.Web
+@using System.Collections.Generic
+@using Dynamicweb.Rapido.Blocks.Extensibility
+@using Dynamicweb.Rapido.Blocks
+@{
+    //BlocksPage masterBlocksBlocksPage = BlocksPage.GetBlockPage("Master");
+
+     if (Model.Area.Item.GetItem("Layout").GetItems("FooterPayments") != null && Model.Area.Item.GetItem("Layout").GetItems("FooterPayments").Count > 0)
+    {
+        Block footerPayments = new Block
+        {
+            Id = "FooterPayments",
+            SortId = 80,
+            Template = RenderFooterPaymentsCustom()
+        };
+        masterBlocksBlocksPage.RemoveBlockById("MasterFooterPayments");
+        masterBlocksBlocksPage.Add(MasterBlockId.MasterFooter, footerPayments);
+    }
+}
+
+@helper RenderFooterPaymentsCustom() {
+    <div class="footer__content dw-mod">
+        <div class="center-container top-container__center-container dw-mod">
+            <div class="collection u-ta-center dw-mod">
+                @foreach (var payment in Model.Area.Item.GetItem("Layout").GetItems("FooterPayments"))
+                {
+                    var paymentItem = payment.GetValue("CardTypeOrVerifiedPayment") as Dynamicweb.Frontend.ListViewModel;
+                    string paymentImage = null;
+                    string paymentTitle = paymentItem.SelectedName;
+                    ListOptionViewModel selected = paymentItem.SelectedOptions.FirstOrDefault();
+                    if (selected != null)
+                    {
+                        paymentImage = selected.Icon;
+                    }
+
+                    <div class="footer__card-type">
+                        <img class="b-lazy" src="/Files/Images/placeholder.gif" data-src="/Admin/Public/GetImage.ashx?width=60&Compression=75&image=@paymentImage" alt="@paymentTitle" title="@paymentTitle" />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}

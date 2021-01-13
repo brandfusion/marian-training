@@ -1,0 +1,291 @@
+﻿/**
+ * Basic typography style for text
+ * Warning: These styles overrides without the default .dw-mod class, as they all target the most basic required elements
+ */
+.content-row .grid-list-wrapper {
+  display: grid;
+  grid-column-gap: 2rem;
+  grid-row-gap: 1rem;
+  align-items: center;
+}
+.content-row .grid-list-wrapper .buttons-collection {
+  grid-column-start: 1;
+}
+.content-row .grid-list-wrapper .img-wrapper img {
+  margin: 0 auto;
+}
+.content-row .grid-list-wrapper.one {
+  grid-template-columns: 100%;
+}
+.content-row .grid-list-wrapper.one .img-wrapper {
+  grid-column-start: 1;
+  grid-column-end: 1;
+  grid-row-start: 1;
+  grid-row-end: 1;
+}
+.content-row .grid-list-wrapper.one .content_list_wrapper {
+  flex-direction: column !important;
+}
+.content-row .grid-list-wrapper.two {
+  grid-template-columns: 100%;
+}
+.content-row .grid-list-wrapper.two .img-wrapper {
+  grid-column-start: 1;
+  grid-column-end: 1;
+  grid-row-start: 2;
+  grid-row-end: 2;
+}
+.content-row .grid-list-wrapper.two .content_list_wrapper {
+  flex-direction: column !important;
+}
+.content-row .grid-list-wrapper.three {
+  grid-template-columns: 30% 1fr;
+}
+.content-row .grid-list-wrapper.three .img-wrapper {
+  grid-column-start: 1;
+  grid-column-end: 1;
+  grid-row-start: 1;
+  grid-row-end: 1;
+}
+.content-row .grid-list-wrapper.three .buttons-collection {
+  grid-column-start: 2;
+}
+.content-row .grid-list-wrapper.three .content_list_wrapper {
+  grid-column-start: 2;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 1;
+}
+.content-row .grid-list-wrapper.four {
+  grid-template-columns: 1fr 30%;
+}
+.content-row .grid-list-wrapper.four .img-wrapper {
+  grid-column-start: 2;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 1;
+}
+.content_list_wrapper > * {
+  color: inherit;
+}
+.page.header-overlay .carousel__slide .content-row__item__body {
+  margin: 0 auto;
+  max-width: 1440px;
+}
+header .main-navigation {
+  padding-top: 2rem;
+}
+header.negative {
+  position: relative;
+}
+header.negative .logo.negative {
+  display: none;
+}
+header.negative .main-navigation {
+  background: transparent;
+}
+header.negative .main-navigation li.menu__item:hover {
+  background: transparent !important;
+}
+header.negative .main-navigation .menu .menu__item.is-dropdown.dw-mod:after {
+  color: #fff;
+}
+header.negative .main-navigation .menu .menu__item:hover {
+  border-bottom-color: #fff;
+}
+header.negative .main-navigation .menu .menu__item--active {
+  border-bottom-color: #fff;
+}
+header.negative .main-navigation .menu .menu__item a.menu__link.dw-mod {
+  color: #fff;
+}
+header.negative .main-navigation .menu .menu__item span.menu__link.dw-mod {
+  color: #fff;
+}
+header.negative .main-navigation .menu__link--icon {
+  color: #fff;
+}
+header.negative .main-navigation .menu__link--icon:hover {
+  color: #fff;
+}
+header.negative.sticky {
+  -webkit-transition: all 0.33s cubic-bezier(0.694, 0.0482, 0.335, 1);
+  -moz-transition: all 0.33s cubic-bezier(0.694, 0.0482, 0.335, 1);
+  -o-transition: all 0.33s cubic-bezier(0.694, 0.0482, 0.335, 1);
+  -ms-transition: all 0.33s cubic-bezier(0.694, 0.0482, 0.335, 1);
+  transition: all 0.33s cubic-bezier(0.694, 0.0482, 0.335, 1);
+  top: -120px;
+  left: 0 !important;
+  -moz-background-clip: border;
+  -webkit-background-clip: border;
+  background-clip: border-box;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding;
+  background-clip: padding-box;
+  -moz-background-clip: content;
+  -webkit-background-clip: content;
+  background-clip: content-box;
+}
+header.negative.sticky .logo.positive {
+  display: none;
+}
+header.negative.sticky .logo.negative {
+  display: block;
+}
+header.negative.sticky .menu.hidden--on-sticky {
+  display: none !important;
+}
+header.negative.sticky .menu .menu__item.is-dropdown.dw-mod:after {
+  color: #212121 !important;
+}
+header.negative.sticky .menu .menu__item:hover {
+  border-bottom-color: #212121 !important;
+}
+header.negative.sticky .menu .menu__item--active {
+  border-bottom-color: #212121 !important;
+}
+header.negative.sticky .menu .menu__item a.menu__link.dw-mod {
+  color: #212121 !important;
+}
+header.negative.sticky .menu .menu__item span.menu__link.dw-mod {
+  color: #212121 !important;
+}
+header.negative.sticky .menu .menu__item .menu__link--icon {
+  color: #212121 !important;
+}
+header.negative.sticky .menu .menu__item .menu__link--icon:hover {
+  color: #212121 !important;
+}
+header.negative.sticky.sticky_animate {
+  position: fixed;
+  top: 0;
+  opacity: 1;
+}
+header.negative.sticky.sticky_animate .main-navigation {
+  background: #fff !important;
+}
+header.positive {
+  position: relative;
+}
+header.positive .logo.positive {
+  display: none;
+}
+header.positive .main-navigation {
+  background: transparent;
+}
+header.positive .main-navigation .menu .menu__item.is-dropdown.dw-mod:after {
+  color: #212121;
+}
+header.positive .main-navigation .menu .menu__item:hover {
+  border-bottom-color: #212121;
+}
+header.positive .main-navigation .menu .menu__item--active {
+  border-bottom-color: #212121;
+}
+header.positive .main-navigation .menu .menu__item .menu__link.dw-mod {
+  color: #212121;
+}
+header.positive .main-navigation .menu__link--icon {
+  color: #212121;
+}
+header.positive .main-navigation .menu__link--icon:hover {
+  color: #212121;
+}
+header.positive.sticky {
+  -webkit-transition: all 0.33s cubic-bezier(0.694, 0.0482, 0.335, 1);
+  -moz-transition: all 0.33s cubic-bezier(0.694, 0.0482, 0.335, 1);
+  -o-transition: all 0.33s cubic-bezier(0.694, 0.0482, 0.335, 1);
+  -ms-transition: all 0.33s cubic-bezier(0.694, 0.0482, 0.335, 1);
+  transition: all 0.33s cubic-bezier(0.694, 0.0482, 0.335, 1);
+  top: -120px;
+  left: 0 !important;
+  -moz-background-clip: border;
+  -webkit-background-clip: border;
+  background-clip: border-box;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding;
+  background-clip: padding-box;
+  -moz-background-clip: content;
+  -webkit-background-clip: content;
+  background-clip: content-box;
+}
+header.positive.sticky .logo.negative {
+  display: block;
+}
+header.positive.sticky .logo.positive {
+  display: none;
+}
+header.positive.sticky .menu.hidden--on-sticky {
+  display: none !important;
+}
+header.positive.sticky .menu .menu__item.is-dropdown.dw-mod:after {
+  color: #fff !important;
+}
+header.positive.sticky .menu .menu__item:hover {
+  border-bottom-color: #fff !important;
+}
+header.positive.sticky .menu .menu__item--active {
+  border-bottom-color: #fff !important;
+}
+header.positive.sticky .menu .menu__item a.menu__link.dw-mod {
+  color: #fff !important;
+}
+header.positive.sticky .menu .menu__item span.menu__link.dw-mod {
+  color: #fff !important;
+}
+header.positive.sticky .menu .menu__item .menu__link--icon {
+  color: #fff !important;
+}
+header.positive.sticky .menu .menu__item .menu__link--icon:hover {
+  color: #fff !important;
+}
+header.positive.sticky.sticky_animate {
+  position: fixed;
+  top: 0;
+  opacity: 1;
+}
+header.positive.sticky.sticky_animate .main-navigation {
+  background: #212121 !important;
+}
+header.sticky .main-navigation {
+  padding: 1.5rem 0;
+}
+.page.header-overlay {
+  margin-top: -92px;
+}
+.page.header-overlay .carousel__slide {
+  height: 100% !important;
+  display: flex !important;
+}
+.content-row--5col {
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+.content-row--1-4split {
+  grid-template-columns: 1fr 4fr;
+}
+.content-row--4-1split {
+  grid-template-columns: 4fr 1fr;
+}
+.mini-cart-dropdown.dw-mod {
+  background: #fff !important;
+}
+#Carousel .content-row__item {
+  padding: 1rem;
+}
+footer ul li {
+  list-style-type: none;
+}
+footer ul li a i {
+  margin-right: 0.5rem;
+}
+.menu__item.dw-mod:hover:not(.menu__item--top-level) {
+  background: inherit;
+}
+/* Media Queries
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+/*
+Note: The best way to structure the use of media queries is to create the queries
+near the relevant code. For example, if you wanted to change the styles for buttons
+on small devices, paste the mobile query code up in the buttons section and style it
+there.
+*/

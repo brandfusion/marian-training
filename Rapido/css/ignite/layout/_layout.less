@@ -1,0 +1,428 @@
+﻿// -----------------------------------------------------------------------------
+// Here you can customize the styles. Most of the already available classes are shown here.
+// -----------------------------------------------------------------------------
+
+
+//Site layout
+.site-container.dw-mod {
+  
+}
+
+//The content container
+.content-container.dw-mod {
+
+}
+
+//The multiple paragraphs container
+.multiple-paragraphs-container.dw-mod {
+
+}
+
+//The paragraph container
+.paragraph-container.dw-mod {
+
+}
+
+
+// Color utility modifiers
+
+.u-brand-color-one, .u-brand-color-one h1, .u-brand-color-one h2, .u-brand-color-one i {
+
+}
+
+.u-brand-color-two, .u-brand-color-two h1, .u-brand-color-two h2, .u-brand-color-two i {
+
+}
+
+
+// Background-color utility modifiers
+
+.u-brand-color-one--bg {
+
+}
+
+.u-brand-color-two--bg {
+
+}
+
+
+
+.content-row {
+    .grid-list-wrapper {
+        display: grid;
+        grid-column-gap: 2rem;
+        grid-row-gap: 1rem;
+        align-items: center;
+
+        .buttons-collection {
+            grid-column-start: 1;
+        }
+
+        .img-wrapper { 
+            img {
+                margin: 0 auto;
+            }
+        }
+
+        &.one {
+            grid-template-columns: 100%;
+
+            .img-wrapper {
+                grid-column-start: 1;
+                grid-column-end: 1;
+                grid-row-start: 1;
+                grid-row-end: 1;
+            }
+
+            .content_list_wrapper {
+                flex-direction: column !important;
+            }
+        }
+
+        &.two {
+            grid-template-columns: 100%;
+
+            .img-wrapper {
+                grid-column-start: 1;
+                grid-column-end: 1;
+                grid-row-start: 2;
+                grid-row-end: 2;
+            }
+
+
+            .content_list_wrapper {
+                flex-direction: column !important;
+            }
+        }
+
+        &.three {
+            grid-template-columns: 30% 1fr;
+
+            .img-wrapper {
+                grid-column-start: 1;
+                grid-column-end: 1;
+                grid-row-start: 1;
+                grid-row-end: 1;
+            }
+
+            .buttons-collection {
+                grid-column-start: 2;
+            }
+
+            .content_list_wrapper {
+                grid-column-start: 2;
+                grid-column-end: 2;
+                grid-row-start: 1;
+                grid-row-end: 1;
+            }
+        }
+
+        &.four {
+            grid-template-columns: 1fr 30%;
+
+            .img-wrapper {
+                grid-column-start: 2;
+                grid-column-end: 2;
+                grid-row-start: 1;
+                grid-row-end: 1;
+            }
+        }
+    }
+}
+
+.content_list_wrapper > * {
+    color: inherit;
+}
+
+
+.page.header-overlay {
+    .carousel__slide {
+        .content-row__item__body {
+            margin: 0 auto;
+            max-width: 1440px;
+        }
+    }
+}
+
+
+header {
+    .main-navigation {
+        padding-top: 2rem;
+    }
+
+    &.negative {
+        position: relative;
+
+        .logo.negative {
+            display: none;
+        }
+
+        .main-navigation {
+            background: transparent;
+
+            li.menu__item {
+                &:hover {
+                    background: transparent !important;
+                }
+            }
+
+            .menu {
+                .menu__item {
+
+                    &.is-dropdown.dw-mod {
+                        &:after {
+                            color: #fff;
+                        }
+                    }
+
+                    &:hover {
+                        border-bottom-color: #fff;
+                    }
+
+                    &--active {
+                        border-bottom-color: #fff;
+                    }
+
+                    a.menu__link.dw-mod {
+                        color: #fff;
+                    }
+
+                    span.menu__link.dw-mod {
+                        color: #fff;
+                    }
+                }
+            }
+
+            .menu__link--icon {
+                color: #fff;
+
+                &:hover {
+                    color: #fff;
+                }
+            }
+        }
+
+        &.sticky {
+            -webkit-transition: all .33s cubic-bezier(0.694,0.0482,0.335,1);
+            -moz-transition: all .33s cubic-bezier(0.694,0.0482,0.335,1);
+            -o-transition: all .33s cubic-bezier(0.694,0.0482,0.335,1);
+            -ms-transition: all .33s cubic-bezier(0.694,0.0482,0.335,1);
+            transition: all .33s cubic-bezier(0.694,0.0482,0.335,1);
+            top: -120px;
+            left: 0 !important;
+            -moz-background-clip: border;
+            -webkit-background-clip: border;
+            background-clip: border-box;
+            -moz-background-clip: padding;
+            -webkit-background-clip: padding;
+            background-clip: padding-box;
+            -moz-background-clip: content;
+            -webkit-background-clip: content;
+            background-clip: content-box;
+
+            .logo.positive {
+                display: none;
+            }
+
+            .logo.negative {
+                display: block;
+            }
+
+
+            .menu {
+                &.hidden--on-sticky {
+                    display: none !important;
+                }
+
+                .menu__item {
+
+                    &.is-dropdown.dw-mod {
+                        &:after {
+                            color: #212121 !important;
+                        }
+                    }
+
+                    &:hover {
+                        border-bottom-color: #212121 !important;
+                    }
+
+                    &--active {
+                        border-bottom-color: #212121 !important;
+                    }
+
+                    a.menu__link.dw-mod {
+                        color: #212121 !important;
+                    }
+
+                    span.menu__link.dw-mod {
+                        color: #212121 !important;
+                    }
+
+                    .menu__link--icon {
+                        color: #212121 !important;
+
+                        &:hover {
+                            color: #212121 !important;
+                        }
+                    }
+                }
+            }
+
+            &.sticky_animate {
+                position: fixed;
+                top: 0;
+                opacity: 1;
+
+                .main-navigation {
+                    background: #fff !important;
+                }
+            }
+        }
+    }
+
+    &.positive {
+        position: relative;
+
+        .logo.positive {
+            display: none;
+        }
+
+        .main-navigation {
+            background: transparent;
+
+            .menu {
+                .menu__item {
+                    &.is-dropdown.dw-mod {
+                        &:after {
+                            color: #212121;
+                        }
+                    }
+
+                    &:hover {
+                        border-bottom-color: #212121;
+                    }
+
+                    &--active {
+                        border-bottom-color: #212121;
+                    }
+
+                    .menu__link.dw-mod {
+                        color: #212121;
+                    }
+                }
+            }
+
+            .menu__link--icon {
+                color: #212121;
+
+                &:hover {
+                    color: #212121;
+                }
+            }
+        }
+
+        &.sticky {
+            -webkit-transition: all .33s cubic-bezier(0.694,0.0482,0.335,1);
+            -moz-transition: all .33s cubic-bezier(0.694,0.0482,0.335,1);
+            -o-transition: all .33s cubic-bezier(0.694,0.0482,0.335,1);
+            -ms-transition: all .33s cubic-bezier(0.694,0.0482,0.335,1);
+            transition: all .33s cubic-bezier(0.694,0.0482,0.335,1);
+            top: -120px;
+            left: 0 !important;
+            -moz-background-clip: border;
+            -webkit-background-clip: border;
+            background-clip: border-box;
+            -moz-background-clip: padding;
+            -webkit-background-clip: padding;
+            background-clip: padding-box;
+            -moz-background-clip: content;
+            -webkit-background-clip: content;
+            background-clip: content-box;
+
+            .logo.negative {
+                display: block;
+            }
+
+            .logo.positive {
+                display: none;
+            }
+
+            .menu {
+                &.hidden--on-sticky {
+                    display: none !important;
+                }
+
+                .menu__item {
+
+                    &.is-dropdown.dw-mod {
+                        &:after {
+                            color: #fff !important;
+                        }
+                    }
+
+                    &:hover {
+                        border-bottom-color: #fff !important;
+                    }
+
+                    &--active {
+                        border-bottom-color: #fff !important;
+                    }
+
+                    a.menu__link.dw-mod {
+                        color: #fff !important;
+                    }
+
+                    span.menu__link.dw-mod {
+                        color: #fff !important;
+                    }
+
+                    .menu__link--icon {
+                        color: #fff !important;
+
+                        &:hover {
+                            color: #fff !important;
+                        }
+                    }
+                }
+            }
+
+            &.sticky_animate {
+                position: fixed;
+                top: 0;
+                opacity: 1;
+
+                .main-navigation {
+                    background: #212121 !important;
+                }
+            }
+        }
+    }
+
+    &.sticky {
+        .main-navigation {
+            padding: 1.5rem 0;
+        }
+    }
+}
+
+
+.page.header-overlay {
+    margin-top: -92px;
+
+    .carousel__slide {
+        height: 100% !important;
+        display: flex !important;
+    }
+}
+
+.content-row--5col {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.content-row--1-4split {
+    grid-template-columns: 1fr 4fr;
+}
+
+.content-row--4-1split {
+    grid-template-columns: 4fr 1fr;
+}
